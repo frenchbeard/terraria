@@ -1,4 +1,10 @@
-# Terraria [![microbadger](https://images.microbadger.com/badges/image/ryshe/terraria.svg)](https://microbadger.com/images/ryshe/terraria "Get your own image badge on microbadger.com")
+# Terraria
+
+This image is based on the [Tshock image](https://github.com/ryansheehan/terraria) by @ryansheehan, but runs the server as an unprivileged user within the container itself.
+
+It differs in a couple of keys ways from the original, especially in the way the persistent volumes must be handled. An example docker-compose.yml is provided with the expected environment values (you can change your mount path).
+
+> The mounted volume path must be owned / writable by the user with UID 1000 on the host to prevent issues when running the container.
 
 **[UPDATE]** I know a lot of people are excited for Terraria v1.4 Journey's End!  This source code is built around the pre-release
 of [TShock][TShock].  Will continue to update as new releases come out.
@@ -46,7 +52,7 @@ Any `config.json` in the directory will automatically be loaded.  The `<world_fi
 
 ## Updating your container
 
-Updating is easy!  
+Updating is easy!
 
 1. Grab the latest terraria container
 
@@ -141,7 +147,7 @@ Let's break down this command:
 
 ### Running with an existing generated world
 
-After a world has been generated, you may want to load directly into it.  
+After a world has been generated, you may want to load directly into it.
 
 ```bash
 docker run -d --rm -p 7777:7777 -v $HOME/terraria/world:/root/.local/share/Terraria/Worlds ryshe/terraria:latest -world /root/.local/share/Terraria/Worlds/<world_filename_here>.wld
